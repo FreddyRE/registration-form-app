@@ -1,0 +1,19 @@
+.imgContainer {
+   flex: 1;
+   overflow: hidden;
+   height: 100%;
+}
+
+.imgContainer > img {
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    object-fit: cover;
+}
+
+.formContainer {
+    flex: 1;
+    padding: 50px;
+}
+
