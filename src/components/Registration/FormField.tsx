@@ -6,8 +6,9 @@ interface FormField {
     name: string,
     value: string,
     type?: string,
-    error?: string,
+    error?: boolean,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 
@@ -16,17 +17,21 @@ export const FormField: React.FC<FormField> = ({
     name,
     value,
     type = "text",
-    error,
+    error = false,
+    onBlur,
     onChange,
 }) => {
-    return <div className={styles.formField}>
+    return <div className={
+        `${styles.formField} ${error ? styles.error : ""}`
+    }>
         <label htmlFor={name}>{label}</label>
-        <input 
-            type={type} 
+        <input
+            type={type}
             name={name}
             id={name}
             value={value}
             onChange={onChange}
+            onBlur={onBlur}
         />
     </div>
 }

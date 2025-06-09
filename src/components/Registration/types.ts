@@ -2,7 +2,7 @@ export interface RegistrationFields {
     name: string;
     email: string;
     password : string;
-    dateOfBirth: Date;
+    dateOfBirth: string;
 }
 
  

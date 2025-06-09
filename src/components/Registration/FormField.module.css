@@ -4,6 +4,16 @@
     margin: 15px 0;
 }
 
+.error {
+    color: red;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
 .formField>input {
     padding: 10px;
     font-size: 15px;
@@ -16,4 +26,9 @@
 .formField>input:focus-visible {
     outline-color: transparent !important;
 
+}
+
+.error > input {
+    color: red;
+    border-bottom: 1px solid red;
 }
