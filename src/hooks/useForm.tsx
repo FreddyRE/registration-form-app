@@ -4,16 +4,24 @@ import { registrationFormValidators } from "../validators/registratiorFormValida
 
 
 
-const initialErrors: Record<keyof RegistrationFields, null|string> = {
+const initialErrors: Record<keyof RegistrationFields, null | string> = {
     name: null,
     email: null,
     password: null,
     dateOfBirth: null
 }
 
+const initialTouched: Record<keyof RegistrationFields, boolean> = {
+    name: false,
+    email: false,
+    password: false,
+    dateOfBirth: false
+}
+
 export function useForm<RegistrationFields>(initialValues: RegistrationFields) {
     const [values, setValues] = useState(initialValues)
     const [errors, setErrors] = useState(initialErrors)
+    const [touched, setTouched] = useState(initialTouched)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -45,9 +53,16 @@ export function useForm<RegistrationFields>(initialValues: RegistrationFields) {
             const errMessage = registrationFormValidators[field](value)
             setErrors({ ...errors, [field]: errMessage })
 
+            if (!touched[field]) {
+                setTouched({ ...touched, [field]: true })
+
+            }
+
         }
 
     }
+
+
 
 
     return {
@@ -55,6 +70,7 @@ export function useForm<RegistrationFields>(initialValues: RegistrationFields) {
         handleChange,
         handleChangeWithValidation,
         handleBlur,
+        touched,
         errors
 
     }

@@ -6,7 +6,7 @@ interface FormField {
     name: string,
     value: string,
     type?: string,
-    error?: boolean,
+    error?: string | null,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -17,7 +17,7 @@ export const FormField: React.FC<FormField> = ({
     name,
     value,
     type = "text",
-    error = false,
+    error = null,
     onBlur,
     onChange,
 }) => {
@@ -33,5 +33,8 @@ export const FormField: React.FC<FormField> = ({
             onChange={onChange}
             onBlur={onBlur}
         />
+        <div className={styles.errorField}>
+            {error ?  error : "\u00A0" }
+        </div>
     </div>
 }

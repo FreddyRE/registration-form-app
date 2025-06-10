@@ -10,6 +10,14 @@
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    border: 0px;
+
+}
+
+.disabled {
+    background-color: rgba(1, 1, 1, 0.1);
+    border: 0px;
+    cursor: not-allowed;
 }
 
 .errorMessage{

@@ -4,8 +4,13 @@
     margin: 15px 0;
 }
 
-.error {
+
+.errorField {
     color: red;
+    font-size: 13px;
+    min-height: 15px;
+    margin-top: 0.23rem;
+    line-height: 1;
 }
 
 .formField {
@@ -29,6 +34,5 @@
 }
 
 .error > input {
-    color: red;
     border-bottom: 1px solid red;
 }

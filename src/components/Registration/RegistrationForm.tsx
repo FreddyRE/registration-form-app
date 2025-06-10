@@ -18,15 +18,18 @@ export const RegistrationForm = () => {
         handleChange,
         handleChangeWithValidation,
         handleBlur,
+        touched,
         errors
     } = useForm(initialFields)
-    const [submitted, setSubmitted] = useState(false)
+    const [valid, setValid] = useState(false)
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        console.log("to do ")
+        if(valid) {
+            console.log("To do")
+        }
 
     }
 
@@ -38,18 +41,18 @@ export const RegistrationForm = () => {
             label="Full Name"
             value={values.name}
             name="name"
-            onChange={(e) => errors.name ? handleChangeWithValidation(e) : handleChange(e)}
+            onChange={(e) => touched.name ? handleChangeWithValidation(e) : handleChange(e)}
             onBlur={(e) => handleBlur(e)}
-            error={errors.name !== null}
+            error={errors.name}
         />
         <FormField
             label="email"
             value={values.email}
             name="email"
             type="email"
-            onChange={(e) => errors.email ? handleChangeWithValidation(e) : handleChange(e)}
+            onChange={(e) => touched.email ? handleChangeWithValidation(e) : handleChange(e)}
             onBlur={(e) => handleBlur(e)}
-            error={errors.email !== null}
+            error={errors.email}
 
         />
         <FormField
@@ -57,9 +60,9 @@ export const RegistrationForm = () => {
             value={values.password}
             name="password"
             type="password"
-            onChange={(e) => errors.password ? handleChangeWithValidation(e) : handleChange(e)}
+            onChange={(e) => touched.password ? handleChangeWithValidation(e) : handleChange(e)}
             onBlur={(e) => handleBlur(e)}
-            error={errors.password !== null}
+            error={errors.password}
 
         />
         <FormField
@@ -67,23 +70,17 @@ export const RegistrationForm = () => {
             value={values.dateOfBirth}
             name="dateOfBirth"
             type="date"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChangeWithValidation(e)}
             onBlur={(e) => handleBlur(e)}
-            error={errors.dateOfBirth !== null}
+            error={errors.dateOfBirth}
 
         />
 
-        <button className={styles.submitButton} type="submit">Register</button>
+        <button
+            className={`${styles.submitButton}  ${!valid && styles.disabled}`}
+            type="submit">Register
+        </button>
 
-
-        {Object.entries(errors).map(
-            ([field, message]) =>
-                message && (
-                    <div key={field} className={styles.errorMessage}>
-                        - {message}
-                    </div>
-                )
-        )}
 
 
         {/* <div className={styles.successMessage}>Registration successfully! </div> */}
